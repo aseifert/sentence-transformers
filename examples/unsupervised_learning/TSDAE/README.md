@@ -3,7 +3,7 @@
 This folder shows an example, how can we train an unsupervised [TSDAE (Tranformer-based Denoising AutoEncoder)](https://arxiv.org/abs/2104.06979) model with pure sentences as training data.
 
 ## Background 
-During training, TSDAE encodes damaged sentences into fixed-sized vectors and requires the decoder to recon-struct  the  original  sentences  from  this  sentenceembeddings. For good reconstruction quality, thesemantics must be captured well in the sentenceembeddings from the encoder. Later, at inference,we only use the encoder for creating sentence embeddings. The architecture is illustrated in the figure below:
+During training, TSDAE encodes damaged sentences into fixed-sized vectors and requires the decoder to reconstruct the original sentences from these sentence embeddings. For good reconstruction quality, the semantics must be captured well in the sentence embeddings from the encoder. Later, at inference, we only use the encoder for creating sentence embeddings. The architecture is illustrated in the figure below:
 
 ![](https://raw.githubusercontent.com/UKPLab/sentence-transformers/master/docs/img/TSDAE.png)
 
@@ -50,7 +50,7 @@ model.save('output/tsdae-model')
 
 ## TSDAE from Sentences File
 
-**[train_tsdae_from_file.py](train_tsdae_from_file.py)** loads sentences from a provided text file. It is expected, that the there is one sentence per line in that text file.
+**[train_tsdae_from_file.py](train_tsdae_from_file.py)** loads sentences from a provided text file. It is expected that there is one sentence per line in that text file.
 
 TSDAE will be training using these sentences. Checkpoints are stored every 500 steps to the output folder.
 
@@ -58,7 +58,7 @@ TSDAE will be training using these sentences. Checkpoints are stored every 500 s
 ## TSDAE on AskUbuntu Dataset
 The [AskUbuntu dataset](https://github.com/taolei87/askubuntu) is a manually annotated dataset for the [AskUbuntu forum](https://askubuntu.com/). For 400 questions, experts annotated for each question 20 other questions if they are related or not. The questions are split into train & development set.
 
-**[train_askubuntu_tsdae.py](train_askubuntu_tsdae.py)** - Shows an example how to train a model on AskUbuntu using only sentences without any labels. As sentences, we use the titles that are not used in the dev / test set. 
+**[train_askubuntu_tsdae.py](train_askubuntu_tsdae.py)** - Shows an example of how to train a model on AskUbuntu using only sentences without any labels. As sentences, we use the titles that are not used in the dev / test set. 
 
 | Model | MAP-Score on test set |
 | ---- | :----: |
@@ -73,7 +73,7 @@ The [AskUbuntu dataset](https://github.com/taolei87/askubuntu) is a manually ann
 
 
 ## TSDAE as Pre-Training Task
-As we show in our [TSDAE paper](https://arxiv.org/abs/2104.06979), TSDAE also a powerful pre-training method outperforming the classical Mask Language Model (MLM) pre-training task.
+As we show in our [TSDAE paper](https://arxiv.org/abs/2104.06979), TSDAE is also a powerful pre-training method outperforming the classical Mask Language Model (MLM) pre-training task.
 
 You first train your model with the TSDAE loss. After you have trained for a certain number of steps / after the model converges, you can further fine-tune your pre-trained model like any other SentenceTransformer model.
 
